@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+
+        .morph-text {
+            font-size: 12em;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #F8F8FF;
+            overflow: hidden;
+        }
+
+        .morph-text span {
+            display: inline-block;
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="morph-text" id="morphText">
+        <span>M</span>
+        <span>A</span>
+        <span>V</span>
+        <span>I</span>
+        <span>N</span>
+       
+    </div>
+
+    <script>
+        const morphText = document.getElementById('morphText');
+
+        function morph() {
+            const spans = morphText.querySelectorAll('span');
+
+            spans.forEach((span, index) => {
+                setTimeout(() => {
+                    span.style.transform = 'rotateY(180deg)';
+                }, index * 50);
+            });
+
+            setTimeout(() => {
+                spans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.style.transform = 'rotateY(0)';
+                    }, index * 50);
+                });
+            }, spans.length * 50);
+        }
+
+        setInterval(morph, 2000); // Repeat the morphing effect every 3 seconds
+    </script>
+</body>
+</html>
